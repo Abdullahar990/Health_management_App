@@ -9,7 +9,7 @@ export default function DoctorsPage() {
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
-        specialty: '',
+        specialization: '',
         email: '',
         phone: ''
     });
@@ -53,7 +53,7 @@ export default function DoctorsPage() {
             if (!response.ok) throw new Error('Failed to add doctor');
 
             // Reset form and refresh doctor list
-            setFormData({ name: '', specialty: '', email: '', phone: '' });
+            setFormData({ name: '', specialization: '', email: '', phone: '' });
             setShowForm(false);
             fetchDoctors();
         } catch (error) {
@@ -87,12 +87,12 @@ export default function DoctorsPage() {
                         />
                     </div>
                     <div className={styles.formGroup}>
-                        <label htmlFor="specialty">specialty</label>
+                        <label htmlFor="specialization">specialization</label>
                         <input
                             type="text"
-                            id="specialty"
-                            name="specialty"
-                            value={formData.specialty}
+                            id="specialization"
+                            name="specialization"
+                            value={formData.specialization}
                             onChange={handleInputChange}
                             required
                         />
@@ -131,7 +131,7 @@ export default function DoctorsPage() {
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>specialty</th>
+                            <th>specialization</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Actions</th>
@@ -142,7 +142,7 @@ export default function DoctorsPage() {
                             <tr key={doctor.doctor_id}>
                                 <td>{doctor.doctor_id}</td>
                                 <td>{doctor.name}</td>
-                                <td>{doctor.specialty}</td>
+                                <td>{doctor.specialization}</td>
                                 <td>{doctor.email}</td>
                                 <td>{doctor.phone}</td>
                                 <td>
