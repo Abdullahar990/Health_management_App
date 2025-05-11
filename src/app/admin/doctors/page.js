@@ -157,6 +157,7 @@ export default function DoctorsPage() {
                                 <td>{doctor.specialization}</td>
                                 <td>{doctor.email}</td>
                                 <td>{doctor.phone}</td>
+                                <td>{doctor.available}</td>
                                 <td>
                                     <button className={`${styles.actionButton} ${styles.editButton}`}>
                                         Edit
