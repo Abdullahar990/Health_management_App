@@ -10,10 +10,11 @@ export async function GET() {
 // POST: Add a new doctor
 export async function POST(req) {
     try {
-        const { name, specialty, email, phone } = await req.json()
+        const { name, specialization, email, phone, available } = await req.json()
+        const safeAvailable = available === '' ? null : available;
         await db.execute(
-            'INSERT INTO doctors (name, specialty, email, phone) VALUES (?, ?, ?, ?)',
-            [name, specialty, email, phone]
+            'INSERT INTO doctors (name, specialization, email, phone, available) VALUES (?, ?, ?, ?, ?)',
+            [name, specialization, email, phone, safeAvailable]
         )
         return NextResponse.json({ success: true, message: 'Doctor added successfully' })
     } catch (error) {
