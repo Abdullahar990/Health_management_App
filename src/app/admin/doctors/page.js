@@ -121,7 +121,7 @@ export default function DoctorsPage() {
                         />
                     </div>
                     <div className={styles.formGroup}>
-                        <label htmlFor="available">Phone</label>
+                        <label htmlFor="available">available</label>
                         <input
                             type="text"
                             id="available"
