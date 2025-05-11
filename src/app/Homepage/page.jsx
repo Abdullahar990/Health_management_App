@@ -16,7 +16,7 @@ const Homepage = () => {
                 <div className={styles.auth}>
                     <button className={styles.loginBtn} onClick={()=>router.push('/auth/login')}>Login</button>
                     <button className={styles.registerBtn} onClick={()=>router.push('/auth/register')}>Register</button>
-                    <button className={styles.loginBtn} onClick={()=>router.push('/auth/register')}>Dashboard</button>
+                    <button className={styles.loginBtn} onClick={()=>router.push('/dashboard')}>Dashboard</button>
                 </div>
             </header>
 
