@@ -4,10 +4,12 @@ import styles from '../Appointments.module.css'
 
 export default function BookAppointment() {
     const [form, setForm] = useState({
-        type: '',
-        date: '',
-        time: '',
-        doctor_id: ''
+        user_id: '1', 
+        doctor_id: '',
+        appointment_type: '',
+        appointment_date: '',
+        appointment_time: '',
+        location: 'Online',
     })
     const [doctors, setDoctors] = useState([])
     const [appointmentTypes, setAppointmentTypes] = useState([
