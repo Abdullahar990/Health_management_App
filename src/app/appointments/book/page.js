@@ -4,12 +4,12 @@ import styles from '../Appointments.module.css'
 
 export default function BookAppointment() {
     const [form, setForm] = useState({
-        user_id: '1', 
+        user_id: '', // Added user_id field
         doctor_id: '',
-        appointment_type: '',
-        appointment_date: '',
-        appointment_time: '',
-        location: 'Online',
+        appointment_type: '', // Changed from 'type' to match backend
+        appointment_date: '', // Changed from 'date' to match backend
+        appointment_time: '', // Changed from 'time' to match backend
+        location: '' // Added location field
     })
     const [doctors, setDoctors] = useState([])
     const [appointmentTypes, setAppointmentTypes] = useState([
@@ -19,6 +19,14 @@ export default function BookAppointment() {
         'Vaccination',
         'Specialist Referral'
     ])
+    
+    const [locations, setLocations] = useState([
+        'Main Hospital',
+        'Downtown Clinic',
+        'North Branch',
+        'South Branch',
+        'Telehealth'
+    ])
 
     useEffect(() => {
         // In a real app, fetch doctors from API
@@ -27,6 +35,10 @@ export default function BookAppointment() {
             { doctor_id: '2', name: 'Dr. Johnson', specialization: 'Cardiology' },
             { doctor_id: '3', name: 'Dr. Williams', specialization: 'Pediatrics' }
         ])
+        
+        // In a real app, you might get the user_id from authentication context
+        // For now, we'll set a dummy user_id 
+        setForm(prev => ({ ...prev, user_id: '123' }))
     }, [])
 
     const handleSubmit = async (e) => {
@@ -54,11 +66,11 @@ export default function BookAppointment() {
 
             <form className={styles.appointmentForm} onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
-                    <label htmlFor="type">Appointment Type</label>
+                    <label htmlFor="appointment_type">Appointment Type</label>
                     <select
-                        id="type"
-                        value={form.type}
-                        onChange={e => setForm({ ...form, type: e.target.value })}
+                        id="appointment_type"
+                        value={form.appointment_type}
+                        onChange={e => setForm({ ...form, appointment_type: e.target.value })}
                         required
                     >
                         <option value="">Select appointment type</option>
@@ -87,26 +99,41 @@ export default function BookAppointment() {
 
                 <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                        <label htmlFor="date">Date</label>
+                        <label htmlFor="appointment_date">Date</label>
                         <input
-                            id="date"
+                            id="appointment_date"
                             type="date"
-                            value={form.date}
-                            onChange={e => setForm({ ...form, date: e.target.value })}
+                            value={form.appointment_date}
+                            onChange={e => setForm({ ...form, appointment_date: e.target.value })}
                             required
                         />
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="time">Time</label>
+                        <label htmlFor="appointment_time">Time</label>
                         <input
-                            id="time"
+                            id="appointment_time"
                             type="time"
-                            value={form.time}
-                            onChange={e => setForm({ ...form, time: e.target.value })}
+                            value={form.appointment_time}
+                            onChange={e => setForm({ ...form, appointment_time: e.target.value })}
                             required
                         />
                     </div>
+                </div>
+
+                <div className={styles.formGroup}>
+                    <label htmlFor="location">Location</label>
+                    <select
+                        id="location"
+                        value={form.location}
+                        onChange={e => setForm({ ...form, location: e.target.value })}
+                        required
+                    >
+                        <option value="">Select location</option>
+                        {locations.map((location, index) => (
+                            <option key={index} value={location}>{location}</option>
+                        ))}
+                    </select>
                 </div>
 
                 <button className={styles.appointmentButton} type="submit">
