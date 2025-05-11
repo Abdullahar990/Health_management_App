@@ -43,7 +43,7 @@ export default function BookAppointment() {
                 const data = await res.json()
 
                 if (res.ok && data.user?.user_id) {
-                    setForm(prev => ({ ...prev, user_id: data.user.user_id }))
+                    setForm(prev => ({ ...prev, user_id: 1 }))
                 } else {
                     console.error('User not logged in or missing user_id')
                 }
