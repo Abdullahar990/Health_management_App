@@ -146,7 +146,7 @@ export default function DoctorsPage() {
                             <th>specialization</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Actions</th>
+                            <th>Available</th>
                         </tr>
                     </thead>
                     <tbody>
