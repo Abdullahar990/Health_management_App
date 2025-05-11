@@ -19,7 +19,7 @@ export default function BookAppointment() {
         'Vaccination',
         'Specialist Referral'
     ])
-    
+
     const [locations, setLocations] = useState([
         'Main Hospital',
         'Downtown Clinic',
@@ -29,16 +29,30 @@ export default function BookAppointment() {
     ])
 
     useEffect(() => {
-        // In a real app, fetch doctors from API
+        // Set doctors (you may replace with fetch later)
         setDoctors([
             { doctor_id: '1', name: 'Dr. Smith', specialization: 'General Medicine' },
             { doctor_id: '2', name: 'Dr. Johnson', specialization: 'Cardiology' },
             { doctor_id: '3', name: 'Dr. Williams', specialization: 'Pediatrics' }
         ])
-        
-        // In a real app, you might get the user_id from authentication context
-        // For now, we'll set a dummy user_id 
-        setForm(prev => ({ ...prev, user_id: '123' }))
+
+        // Fetch logged-in user to get user_id
+        const fetchUser = async () => {
+            try {
+                const res = await fetch('/api/auth/login')
+                const data = await res.json()
+
+                if (res.ok && data.user?.user_id) {
+                    setForm(prev => ({ ...prev, user_id: data.user.user_id }))
+                } else {
+                    console.error('User not logged in or missing user_id')
+                }
+            } catch (error) {
+                console.error('Failed to fetch user info:', error)
+            }
+        }
+
+        fetchUser()
     }, [])
 
     const handleSubmit = async (e) => {
