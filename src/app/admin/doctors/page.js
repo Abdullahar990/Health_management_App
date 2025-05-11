@@ -11,7 +11,8 @@ export default function DoctorsPage() {
         name: '',
         specialization: '',
         email: '',
-        phone: ''
+        phone: '',
+        available: ''
     });
 
     useEffect(() => {
@@ -115,6 +116,17 @@ export default function DoctorsPage() {
                             id="phone"
                             name="phone"
                             value={formData.phone}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label htmlFor="available">Phone</label>
+                        <input
+                            type="text"
+                            id="available"
+                            name="available"
+                            value={formData.available}
                             onChange={handleInputChange}
                             required
                         />
