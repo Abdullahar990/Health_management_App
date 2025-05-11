@@ -43,18 +43,20 @@ export default function DoctorsPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const formattedData = {
+                ...formData,
+                available: formData.available.toLowerCase() === 'yes' ? 1 : 0
+            };
+    
             const response = await fetch('/api/admin/doctors', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formattedData)
             });
-
+    
             if (!response.ok) throw new Error('Failed to add doctor');
-
-            // Reset form and refresh doctor list
-            setFormData({ name: '', specialization: '', email: '', phone: '' });
+    
+            setFormData({ name: '', specialization: '', email: '', phone: '', available: '' });
             setShowForm(false);
             fetchDoctors();
         } catch (error) {
